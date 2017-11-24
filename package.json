@@ -15,6 +15,7 @@
   "scripts": {
   },
   "devDependencies": {
+    "webpack": "^3.8.1"
   },
   "dependencies": {
   }
