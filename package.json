@@ -1,0 +1,21 @@
+{
+  "name": "learning-react",
+  "version": "0.0.1",
+  "main": "index.js",
+  "description": "React/Redux with Server Side Rendering Demo Application",
+  "keywords": [
+    "react",
+    "redux",
+    "universal",
+    "isomorphic",
+    "server side render"
+  ],
+  "author": "Nicola Baldi",
+  "license": "MIT",
+  "scripts": {
+  },
+  "devDependencies": {
+  },
+  "dependencies": {
+  }
+}
