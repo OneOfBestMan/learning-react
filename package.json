@@ -13,12 +13,16 @@
   "author": "Nicola Baldi",
   "license": "MIT",
   "scripts": {
-    "pack": "node_modules/.bin/webpack --config webpack.config.dev.js",
-    "launch": "node ."
+    "build": "npm run build:server && npm run build:assets",
+    "build:server": "npm install && node_modules/.bin/babel src --out-dir build --copy-files",
+    "build:assets": "npm install && node_modules/.bin/webpack --progress --color -p --config webpack.config.dev.js",
+    "launch": "npm run build && node build"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "path": "^0.12.7",

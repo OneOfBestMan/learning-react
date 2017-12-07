@@ -1,16 +1,16 @@
-import React from 'react';
+import React from 'react'
 
 export default class CurrencyDetails extends React.Component {
   constructor() {
     super()
-    this.state = { details: {} }
+    this.state = {details: {}}
   }
 
   fetchDetails(id) {
     fetch(`https://api.gdax.com/products/${id}/ticker`)
       .then(response => response.json())
       .then(data => {
-        this.setState({ details: data })
+        this.setState({details: data})
       })
   }
 
@@ -28,14 +28,13 @@ export default class CurrencyDetails extends React.Component {
   }
 
   render() {
-    const { price, ask, bid } = this.state.details
-    return (
-      <div>
-        <div>Currency pair: { this.props.match.params.id }</div>
-        <div>Price: { price }</div>
-        <div>Ask: { ask }</div>
-        <div>Bid: { bid }</div>
-      </div>
-    )
+    const {price, ask, bid} = this.state.details
+
+    return <div>
+  <div>Currency pair: {this.props.match.params.id}</div>
+  <div>Price: {price}</div>
+  <div>Ask: {ask}</div>
+  <div>Bid: {bid}</div>
+</div>
   }
 }
