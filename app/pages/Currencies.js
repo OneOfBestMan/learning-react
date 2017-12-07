@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom'
 import CurrencyItem from '../components/CurrencyItem'
+import CurrencyDetails from '../components/CurrencyDetails'
 
 export default class Currencies extends React.Component {
   constructor() {
@@ -19,6 +20,8 @@ export default class Currencies extends React.Component {
   }
 
   render() {
+    console.log(`PROPS: ${this.props}`)
+    console.log(`PROPS-JSON: ${JSON.stringify(this.props)}`)
     return (
       <div>
         <h2>~ Currency Page ~</h2>
@@ -26,6 +29,7 @@ export default class Currencies extends React.Component {
           <ul>
             { this.state.data.map(i => <CurrencyItem key={i.id} {...i} />) }
           </ul>
+          <Route path={`${this.props.match.url}/:id`} component={CurrencyDetails} />
         </div>
       </div>
       )
