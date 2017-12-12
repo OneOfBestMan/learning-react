@@ -5,12 +5,18 @@ import {renderRoutes} from 'react-router-config'
 import {renderToString} from 'react-dom/server'
 import {StaticRouter as Router} from 'react-router-dom'
 import routes from './app/routes'
+import thunk from 'redux-thunk'
+import * as reducers from './app/reducers'
+import {createStore, combineReducers, applyMiddleware}  from 'redux'
+import {Provider} from 'react-redux'
 
-const render = (path, routes) => {
+const render = (path, store, routes) => {
   const context = {}
-  const view = <Router location={path} context={context}>
-  <div>{renderRoutes(routes)}</div>
-</Router>
+  const view = <Provider store={store}>
+  <Router location={path} context={context}>
+    <div>{renderRoutes(routes)}</div>
+  </Router>
+</Provider>
 
   return `<!DOCTYPE html>
 <html>
@@ -27,6 +33,8 @@ const render = (path, routes) => {
 
 const server = express()
 server.use(express.static(path.join(__dirname, 'assets')))
-server.use((req, res) => res.end(render(req.path, routes)))
+const rootReducer = combineReducers(reducers)
+const store = createStore(rootReducer, applyMiddleware(thunk))
+server.use((req, res) => res.end(render(req.path, store, routes)))
 
 export default server
