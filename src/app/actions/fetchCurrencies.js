@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-fetch'
+
 export default function fetchCurrencies() {
   return dispatch => fetch('https://api.gdax.com/products/')
     .then(response => response.json())

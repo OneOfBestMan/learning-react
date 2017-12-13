@@ -9,7 +9,9 @@ import thunk from 'redux-thunk'
 import {Provider} from 'react-redux'
 
 const rootReducer = combineReducers(reducers)
-const store = createStore(rootReducer, applyMiddleware(thunk))
+const initialState = window.__INITIAL_STATE__
+delete window.__INITIAL_STATE__
+const store = createStore(rootReducer, initialState, applyMiddleware(thunk))
 
 hydrate(<Provider store={store}>
   <Router>

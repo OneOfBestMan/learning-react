@@ -28,6 +28,8 @@ class Currencies extends React.Component {
   }
 }
 
+Currencies.requirements = [fetchCurrencies]
+
 const mapStateToProps = state => {
   return {
     currencies: state.currencies,
